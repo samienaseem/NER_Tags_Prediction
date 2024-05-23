@@ -16,7 +16,7 @@
 
     <script>
         document.getElementById('predictionForm').addEventListener('submit', function(event) {
-            
+            event.preventDefault();
             const inputText = document.getElementById('inputText').value;
 
             fetch('/predict', {
