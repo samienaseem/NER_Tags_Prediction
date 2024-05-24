@@ -1,8 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 from transformers import BertTokenizerFast, BertForTokenClassification, pipeline
 import torch
+import logging
+from datetime import datetime
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(filename='interaction_logs.txt', level=logging.INFO, 
+                    format='%(asctime)s - %(message)s\n\n', datefmt='%Y-%m-%d %H:%M:%S')
 
 # Load the model
 model1 = BertForTokenClassification.from_pretrained("./Model", from_tf=False, from_flax=False)
@@ -53,10 +59,12 @@ def predict():
     data = request.json
     input_text = data['text']
     predicted_ner_tags = predict_ner_tags(input_text)
+    logging.info(f'Input: {input_text}\nPrediction: {predicted_ner_tags}')
     return jsonify(predicted_ner_tags)
 
 
 
 
 if __name__ == '__main__':
+    print("Starting Flask server at http://127.0.0.1:8081")
     app.run(debug=True, host='127.0.0.1', port=8081)
