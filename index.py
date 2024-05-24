@@ -2,12 +2,13 @@ from flask import Flask, request, jsonify, render_template
 from transformers import BertTokenizerFast, BertForTokenClassification, pipeline
 import torch
 import logging
+import sys
 from datetime import datetime
 
 app = Flask(__name__)
 
 # Configure logging
-logging.basicConfig(filename='sys.stdout', level=logging.INFO, 
+logging.basicConfig(stream='sys.stdout', level=logging.INFO, 
                     format='%(asctime)s - %(message)s\n\n', datefmt='%Y-%m-%d %H:%M:%S')
 
 # Load the model
