@@ -15,8 +15,6 @@ jobs:
 
     - name: Install Git LFS
       run: |
-        sudo apt-get install git-lfs
-        git lfs install
         git lfs pull
 
     - name: Set up Python
