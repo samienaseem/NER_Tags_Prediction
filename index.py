@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Configure logging
-logging.basicConfig(filename='interaction_logs.txt', level=logging.INFO, 
+logging.basicConfig(filename='sys.stdout', level=logging.INFO, 
                     format='%(asctime)s - %(message)s\n\n', datefmt='%Y-%m-%d %H:%M:%S')
 
 # Load the model
